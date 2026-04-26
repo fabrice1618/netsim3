@@ -484,6 +484,11 @@ var UIManager = function()
                             state = STATE_NEUTRAL;
                         }
                         break;
+                    case ACTION_SELECTED_ELEMENT_DELETED:
+                        hideAllMenus();
+                        unselectElement(network.getSelected());
+                        state = STATE_NEUTRAL;
+                        break;
                     case ACTION_CREATE_LINK:
                         hideAllMenus();
                         state = STATE_CREATING_LINK;

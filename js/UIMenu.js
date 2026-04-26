@@ -29,7 +29,7 @@ var UIMenu = function(description, X,Y, fixed)
     
     this.dispose = function()
     {
-        uitranslation.deleteObserver(this);
+        uitranslation.removeObserver(this);
     };
 
     this.localeChanged = function()
