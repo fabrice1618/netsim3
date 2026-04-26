@@ -86,7 +86,13 @@ var eu_ES = {
     "Network not configured for interface: ":"Sarea ez dago konfiguratuta interfaze honetan: ",
     "File name:":"Fitxategiaren izena:",
     "Download":"Deskargatu",
-    "Download file":"Deskargatu fitxategia"
+    "Download file":"Deskargatu fitxategia",
+    "Select an element":"Aukeratu elementu bat",
+    "Selection":"Aukeraketa",
+    "Link":"Lotura",
+    "Slow":"Geldoa",
+    "Play/Pause":"Erreproduzitu/Eten",
+    "Fast":"Azkarra"
 };
 
 uitranslation.registerLocale(eu_ES);

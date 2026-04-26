@@ -86,7 +86,13 @@ var es_ES ={
     "Network not configured for interface: ":"Red no configurada para la interfaz: ",
     "File name:":"Nombre del fichero:",
     "Download":"Descargar",
-    "Download file":"Descargar fichero"
+    "Download file":"Descargar fichero",
+    "Select an element":"Selecciona un elemento",
+    "Selection":"Selección",
+    "Link":"Enlace",
+    "Slow":"Lento",
+    "Play/Pause":"Reproducir/Pausa",
+    "Fast":"Rápido"
 };
 
 uitranslation.registerLocale(es_ES);

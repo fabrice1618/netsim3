@@ -1,0 +1,128 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: "Segoe UI", Tahoma, sans-serif;
+    background: #ffffff;
+}
+
+.ns-navbar {
+    display: flex;
+    align-items: center;
+    padding: 6px 12px;
+    background: #f5f5f5;
+    border-bottom: 1px solid #d0d0d0;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.ns-nav-left,
+.ns-nav-right {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+}
+
+.ns-nav-right {
+    margin-left: auto;
+    padding-left: 16px;
+    border-left: 1px solid #d0d0d0;
+}
+
+.ns-navbar button {
+    background: transparent;
+    border: 0;
+    padding: 4px 10px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    font-size: 0.72em;
+    color: #222;
+    border-radius: 4px;
+    min-width: 64px;
+}
+
+.ns-navbar button:hover {
+    background: #e5e5e5;
+}
+
+.ns-navbar img {
+    width: 28px;
+    height: 28px;
+}
+
+.ns-layout {
+    display: flex;
+    align-items: flex-start;
+}
+
+.ns-sidebar {
+    width: 220px;
+    min-height: 1024px;
+    background: #fafafa;
+    border-right: 1px solid #d0d0d0;
+    padding: 12px;
+    font-size: 0.85em;
+    color: #222;
+    box-sizing: border-box;
+    flex-shrink: 0;
+}
+
+.ns-sidebar h3 {
+    margin: 0 0 10px 0;
+    font-size: 1em;
+    color: #333;
+    border-bottom: 1px solid #d0d0d0;
+    padding-bottom: 6px;
+    word-wrap: break-word;
+}
+
+.ns-sidebar .entry {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 4px;
+    cursor: pointer;
+    text-decoration: none;
+    color: #222;
+    border-radius: 4px;
+    margin-bottom: 2px;
+}
+
+.ns-sidebar .entry:hover {
+    background: #ececec;
+}
+
+.ns-sidebar .entry img {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+}
+
+.ns-sidebar .empty {
+    color: #888;
+    font-style: italic;
+}
+
+.ns-canvaswrap {
+    flex-shrink: 0;
+    width: 2048px;
+    height: 1024px;
+}
+
+table {
+    border: 1px solid black;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+fieldset {
+    font-size: 0.8em;
+}

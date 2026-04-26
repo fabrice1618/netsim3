@@ -11,29 +11,39 @@
  * 
  */
 
-function newElement(type) 
+function newElement(type)
 {
-    switch (type) 
+    var pos = nextElementPosition();
+    switch (type)
     {
         case "host":
-            network.createComputer(0, 50);
+            network.createComputer(pos.x, pos.y);
             break;
         case "dns":
-            network.createDNSServer(0, 50);
+            network.createDNSServer(pos.x, pos.y);
             break;
         case "dhcp":
-            network.createDHCPServer(0, 50);
+            network.createDHCPServer(pos.x, pos.y);
             break;
         case "web":
-            network.createHTTPServer(0, 50);
+            network.createHTTPServer(pos.x, pos.y);
             break;
         case "switch":
-            network.createSwitch(0, 50, 8);
+            network.createSwitch(pos.x, pos.y, 8);
             break;
         case "router":
-            network.createRouter(0, 50);
+            network.createRouter(pos.x, pos.y);
             break;
     }
+}
+
+var _newElementCounter = 0;
+function nextElementPosition()
+{
+    var col = _newElementCounter % 8;
+    var row = Math.floor(_newElementCounter / 8) % 6;
+    _newElementCounter++;
+    return { x: 20 + col * 90, y: 60 + row * 90 };
 }
 
 function simulator(imgs) 

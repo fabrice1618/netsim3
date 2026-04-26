@@ -144,6 +144,8 @@ var UIManager = function()
     var elemRect = null;
     var move_X = 0;
     var move_Y = 0;
+    var navbar = null;
+    var sidebar = null;
 
     function switchMainMenu(params)
     {
@@ -177,9 +179,14 @@ var UIManager = function()
         mainmenu.addEntry("img/64/i18n.png", _("Select language"), 'createLocaleDiv();');
         _self.addMenu(mainmenu);
 
-        var rect = new UIRectangle(switchMainMenu, null, mainmenu, 5, 5, 35, 50, 10, true);
-        _self.addClickable(rect);
+        navbar = new UINavbar("topnav", mainmenu.getEntries());
+        sidebar = new UISidebar("sidebar");
     }
+
+    this.getNavbar = function()
+    {
+        return navbar;
+    };
 
     this.addWindow = function(w)
     {
@@ -199,8 +206,6 @@ var UIManager = function()
     this.reset = function()
     {
         this.clickables = [];
-        var rect = new UIRectangle(switchMainMenu, null, mainmenu, 5, 5, 35, 50, 10, true);
-        this.addClickable(rect);
     };
 
     function mouseDownEvent(event)
@@ -273,10 +278,11 @@ var UIManager = function()
     {
         network.setSelected(e);
         e.getDrawable().addObserver(_self);
-        // Crear el rectángulo de despliegue de menú
+        // Conservé pour drawableChanged et unselectElement; non clickable (sidebar remplace le menu flottant)
         var rect = e.getDrawable().getRect();
         elemRect = new UIRectangle(switchSelectedMenu, e.getMenu(), _self, rect.x + rect.width - 10, rect.y, 10, 10, 50);
-        _self.addClickable(elemRect);
+        var title = (typeof e.getName === "function" && e.getName()) ? e.getName() : _("Selection");
+        sidebar.render(title, e.getMenu().getEntries());
     }
 
     function selectLink(l)
@@ -285,7 +291,7 @@ var UIManager = function()
         var vertices = l.getCenter();
         elemRect = new UIRectangle(switchSelectedMenu, l.getMenu(), _self, vertices.x - 5, vertices.y - 5, 10, 10, 50);
         l.getMenu().setPos(vertices.x + 5, vertices.y - 5);
-        _self.addClickable(elemRect);
+        sidebar.render(_("Link"), l.getMenu().getEntries());
     }
 
     this.drawableChanged = function()
@@ -308,11 +314,13 @@ var UIManager = function()
         }
         _self.removeClickable(elemRect);
         network.setSelected(null);
+        sidebar.clear();
     }
 
     function unselectLine(e)
     {
         network.setSelected(null);
+        sidebar.clear();
     }
 
     function dispatchEvent(X, Y, action)
@@ -463,6 +471,7 @@ var UIManager = function()
                         {
                             // Nada seleccionado
                             network.setSelected(null);
+                            sidebar.clear();
                             // Nuevo estado
                             state = STATE_NEUTRAL;
                         }
@@ -515,6 +524,7 @@ var UIManager = function()
                         {
                             // Nada seleccionado
                             network.setSelected(null);
+                            sidebar.clear();
                             // Nuevo estado
                             state = STATE_NEUTRAL;
                         }
@@ -744,20 +754,6 @@ var UIManager = function()
         clickables.splice(index, 1);
     };
 
-    function renderMainMenu(ctx)
-    {
-        ctx.fillStyle = "rgba(255,255,255,0.5)";
-        ctx.fillRect(5, document.body.scrollTop + 5, 35, 50);
-        ctx.strokeStyle = "rgba(255,255,255,1.0)";
-        ctx.lineWidth = 4;
-        ctx.strokeRect(5, document.body.scrollTop + 5, 35, 50);
-        ctx.lineWidth = 5;
-        for (var i = 15; i < 50; i += 10)
-        {
-            ctx.strokeRect(12, document.body.scrollTop + i, 21, 0);
-        }
-    }
-
     function renderSelected(ctx)
     {
         if ((state === STATE_ELEMENT_SELECTED_MOUSE_DOWN) || (state === STATE_ELEMENT_SELECTED_MOUSE_UP) || (state === STATE_ELEMENT_MENU_VISIBLE) || (state === STATE_CREATING_LINK))
@@ -804,7 +800,6 @@ var UIManager = function()
     {
         renderSelected(ctx);
         renderCreatingLink(ctx);
-        renderMainMenu(ctx);
     };
     
     this.getMousePos = function()

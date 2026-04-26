@@ -29,41 +29,15 @@ function init()
 }
 </script>
     <meta content="">
-    <style>
-
-
-
-
-html, body
-{
-    margin: 0;
-    padding: 0;
-    width:2048px;
-    font-family: "Times New Roman", Times, serif;
-}
-
-table
-{
-    border: 1px solid black;
-    border-collapse: collapse;
-    width: 100%;
-}
-
-td, th
-{
-    border: 1px solid black;
-    border-collapse: collapse;
-}
-
-fieldset
-{
-    font-size: 0.8em;
-}
-</style>
+    <link rel="stylesheet" href="css/app.css">
   </head>
-  <body onload="init();" >
-    <div id="simcontainer" style="float:right;width:2048px; height:1024px;">
-      <canvas id="simcanvas" style="width:2048px; height:1024px;" />
+  <body onload="init();">
+    <nav id="topnav" class="ns-navbar"></nav>
+    <div class="ns-layout">
+      <aside id="sidebar" class="ns-sidebar"></aside>
+      <div id="simcontainer" class="ns-canvaswrap">
+        <canvas id="simcanvas" width="2048" height="1024" style="width:2048px; height:1024px;"></canvas>
+      </div>
     </div>
   </body>
 </html>

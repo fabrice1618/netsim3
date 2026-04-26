@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "uglifyjs js/Globals.js js/DHCPClient.js js/DHCPServer.js js/HTTPClient.js js/HTTPServer.js js/DNSClient.js js/DNSServer.js js/GatewayManager.js js/TrafficManager.js js/IPInfo.js js/Connectable.js js/Connector.js js/Link.js js/Drawable.js js/Host.js js/Message.js js/Network.js js/simulator.js js/ImageLoader.js js/UIClickable.js js/UIRectangle.js js/UILine.js js/UIMenu.js js/UIManager.js js/UITable.js js/UIWindow.js js/AnimationControls.js js/UITranslation.js js/i18n/es_ES.js js/i18n/eu_ES.js js/i18n/en_GB.js -m -o dist/networksim.min.js"
+    "build": "uglifyjs js/Globals.js js/DHCPClient.js js/DHCPServer.js js/HTTPClient.js js/HTTPServer.js js/DNSClient.js js/DNSServer.js js/GatewayManager.js js/TrafficManager.js js/IPInfo.js js/Connectable.js js/Connector.js js/Link.js js/Drawable.js js/Host.js js/Message.js js/Network.js js/simulator.js js/ImageLoader.js js/UIClickable.js js/UIRectangle.js js/UILine.js js/UIMenu.js js/UINavbar.js js/UISidebar.js js/UIManager.js js/UITable.js js/UIWindow.js js/AnimationControls.js js/UITranslation.js js/i18n/es_ES.js js/i18n/eu_ES.js js/i18n/en_GB.js -m -o dist/networksim.min.js"
   },
   "devDependencies": {
     "uglify-js": "^3.19.0"

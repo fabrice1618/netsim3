@@ -61,6 +61,11 @@ var UIMenu = function(description, X,Y, fixed)
         entries.push(data);
     };
 
+    this.getEntries = function()
+    {
+        return entries;
+    };
+
     this.setPos = function(cX, cY)
     {
         X = cX;
