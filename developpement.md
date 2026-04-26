@@ -1,53 +1,32 @@
-# Préparation environnement de développement
+# Environnement de développement
 
-ATTENTION: **ne fonctionne pas**. Le javascrript généré ne fonctionne pas
+## Prérequis
 
-## Preparation (Ubuntu):
+Node.js v20+ et npm v10+.
 
-### Installation nodeJS
-
-Source: https://nodejs.org/fr/download
-```
-# Télécharger et installer nvm :
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
-
-# au lieu de redémarrer le shell
-\. "$HOME/.nvm/nvm.sh"
-
-# Télécharger et installer Node.js :
-nvm install 22
-
-# Vérifier la version de Node.js :
-node -v # Doit afficher "v22.16.0".
-nvm current # Doit afficher "v22.16.0".
-
-# Vérifier la version de npm :
-npm -v # Doit afficher "10.9.2".
+```bash
+# Vérifier
+node -v
+npm -v
 ```
 
+## Installation
 
-```
-npm install -g npm@11.4.2
-npm install -g grunt
-
-cd /var/www/html
-npm install --save-dev grunt grunt-contrib-uglify
-
-npm audit fix  
-
+```bash
+npm install
 ```
 
-## Uglify
+## Build
 
-
+```bash
+npm run build
 ```
-$ npm run build
 
+Produit `dist/networksim.min.js` (concaténation + minification de tous les fichiers `js/`).
 
-# OLD
-$ grunt
+## Développement
 
-```
+Ouvrir `simulatordev.html` dans un navigateur. Ce fichier charge les sources JS individuellement — pas besoin de rebuilder à chaque modification.
 
 ## NetworkSimulator
 
@@ -62,4 +41,3 @@ bardok@gmail.com
 @bardok
 
 This project is covered by GPLv3 license.
-
