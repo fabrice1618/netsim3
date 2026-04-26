@@ -32,8 +32,8 @@ var IMAGE_ENVELOPEICMP = 9;
 var REFRESH_INTERVAL = 1000/60;
 var LINE_SELECT_TOLERANCE = 2;
 
-var ROUTER_WAN = 0;
-var ROUTER_LAN = 1;
+var ROUTER_LAN = 0;
+var ROUTER_WAN = 1;
 
 var DEBUG = false;
 

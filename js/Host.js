@@ -137,7 +137,7 @@ function createNATDiv(id)
     /*var l = window.innerWidth / 2 - 350;
     var t = window.innerHeight / 2 - 200;*/
     
-    var headers = [_("Input interface"),_("WAN Port"),_("LAN Port"),_("IP")];
+    var headers = [_("Input interface"),_("Port interface 1"),_("Port interface 0"),_("IP")];
     var data = host.getConnectable().getTrafficManager().getNATData();
     var uinattable = new UITable(headers,data,'nattable');
     
@@ -404,7 +404,7 @@ var Host = function(type, ports)
         var result = _("Interface ") + i;
         if (type === "router") 
         {
-            result = (i === ROUTER_WAN) ? "WAN" : "LAN";
+            result = "interface " + i;
         }
         
         return result;

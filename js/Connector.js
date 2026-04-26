@@ -85,7 +85,7 @@ var Connector = function(connectable)
         
         if (connectable.getOwner().getType() === "router") 
         {
-            result += (cpos === ROUTER_LAN) ? "LAN" : "WAN";
+            result += "interface " + cpos;
             result += ": ";
         }
         

@@ -30,7 +30,7 @@ Netsim est un simulateur réseau en ligne qui permet de construire et tester des
 |---------|-------------|
 | **Computer** | Un ordinateur avec une interface réseau (interface 0) |
 | **Switch** | Un commutateur réseau qui relie plusieurs machines d'un même réseau local |
-| **Router** | Un routeur avec deux interfaces (LAN et WAN) pour interconnecter deux réseaux |
+| **Router** | Un routeur avec deux interfaces (interface 0 et interface 1) pour interconnecter deux réseaux |
 | **DHCP Server** | Un serveur DHCP qui attribue automatiquement des adresses IP aux machines |
 
 ### Comment utiliser le simulateur
@@ -239,17 +239,16 @@ Comprendre le rôle du routeur et de la passerelle par défaut pour permettre la
                      ┌──────────┐
                      │ Routeur  │
                      │          │
-                     │ LAN:     │
+                     │ if 0:    │
                      │192.168.  │
                      │ 1.254/24 │
                      │          │
-                     │ WAN:     │
+                     │ if 1:    │
                      │192.168.  │
                      │ 2.254/24 │
                      └──┬───┬───┘
                         │   │
-           LAN ─────────┘   └───────── WAN
-           (interface)           (interface)
+        interface 0 ────┘   └────── interface 1
                 │                     │
     ┌───────────┴──────────┐    ┌─────┴──────┐
     │   Switch "LAN"       │    │ Switch     │
@@ -275,8 +274,8 @@ Comprendre le rôle du routeur et de la passerelle par défaut pour permettre la
 - 1 ordinateur (ordinateur 3 / console)
 
 Connecter les éléments comme suit :
-- Le **routeur interface LAN** → switch "LAN" (celui de la partie 2)
-- Le **routeur interface WAN** → switch "serveurs" (le nouveau switch)
+- Le **routeur interface 0** → switch "LAN" (celui de la partie 2)
+- Le **routeur interface 1** → switch "serveurs" (le nouveau switch)
 - L'**ordinateur 3** → switch "serveurs"
 
 Vous devez obtenir le résultat suivant :
@@ -299,18 +298,18 @@ Faire un clic droit sur le routeur et configurer :
 
 | Interface | Réseau connecté | Adresse IP | Masque |
 |-----------|----------------|-----------|--------|
-| LAN | Réseau 192.168.1.0/24 | `192.168.1.254` | `255.255.255.0` |
-| WAN | Réseau 192.168.2.0/24 | `192.168.2.254` | `255.255.255.0` |
+| interface 0 | Réseau 192.168.1.0/24 | `192.168.1.254` | `255.255.255.0` |
+| interface 1 | Réseau 192.168.2.0/24 | `192.168.2.254` | `255.255.255.0` |
 
 ### Questions intermédiaires
 
 1. Pourquoi le routeur a-t-il besoin de deux adresses IP ?
-2. Pourquoi l'adresse LAN du routeur doit-elle être dans le réseau 192.168.1.0/24 ?
+2. Pourquoi l'adresse de l'interface 0 du routeur doit-elle être dans le réseau 192.168.1.0/24 ?
 
 **Etape 4 :** Configurer la passerelle par défaut sur le serveur DHCP
 
 Faire un clic droit sur le serveur DHCP, puis **"edit DHCP server info"** et configurer :
-- **Gateway** : `192.168.1.254` (adresse LAN du routeur)
+- **Gateway** : `192.168.1.254` (adresse de l'interface 0 du routeur)
 
 > **Explication** : Le serveur DHCP va maintenant distribuer non seulement une adresse IP, mais aussi l'adresse de la passerelle par défaut. Ainsi, les machines du réseau 192.168.1.0 sauront vers quel équipement envoyer les paquets destinés à d'autres réseaux.
 
@@ -329,7 +328,7 @@ L'ordinateur 3 est configuré manuellement (pas de DHCP dans son réseau). Il fa
 Faire un clic droit sur l'ordinateur 3, puis **"edit gateways"** et configurer :
 - Network : `0.0.0.0`
 - Mask : `0.0.0.0`
-- Gateway : `192.168.2.254` (adresse WAN du routeur)
+- Gateway : `192.168.2.254` (adresse de l'interface 1 du routeur)
 
 > **Explication** : La route `0.0.0.0 / 0.0.0.0` est appelée **route par défaut**. Elle signifie "pour toute destination inconnue, envoyer au routeur 192.168.2.254".
 
@@ -363,17 +362,16 @@ Mettre en place un serveur DNS pour permettre la résolution de noms de domaine 
                      ┌──────────┐
                      │ Routeur  │
                      │          │
-                     │ LAN:     │
+                     │ if 0:    │
                      │192.168.  │
                      │ 1.254/24 │
                      │          │
-                     │ WAN:     │
+                     │ if 1:    │
                      │192.168.  │
                      │ 2.254/24 │
                      └──┬───┬───┘
                         │   │
-           LAN ─────────┘   └───────── WAN
-           (interface)           (interface)
+        interface 0 ────┘   └────── interface 1
                 │                          │
     ┌───────────┴──────────┐    ┌──────────┴──────────┐
     │   Switch "LAN"       │    │   Switch "serveurs"  │
@@ -409,7 +407,7 @@ Faire un clic droit sur le serveur DNS et configurer :
 2. **"edit gateways"** : configurer la passerelle par défaut :
    - Network : `0.0.0.0`
    - Mask : `0.0.0.0`
-   - Gateway : `192.168.2.254` (adresse WAN du routeur)
+   - Gateway : `192.168.2.254` (adresse de l'interface 1 du routeur)
 
 **Etape 3 :** Tester la connectivité avec le serveur DNS
 
@@ -486,17 +484,17 @@ Mettre en place un serveur web dans le réseau "serveurs", y publier une page HT
                      ┌──────────┐
                      │ Routeur  │
                      │          │
-                     │ LAN:     │
+                     │ if 0:    │
                      │192.168.  │
                      │ 1.254/24 │
                      │          │
-                     │ WAN:     │
+                     │ if 1:    │
                      │192.168.  │
                      │ 2.254/24 │
                      └──┬───┬───┘
                         │   │
-           LAN ─────────┘   └───────── WAN
-           (interface)                  │
+        interface 0 ────┘   └────── interface 1
+                                        │
                 │              ┌────────┴────────────────┐
     ┌───────────┴──────────┐   │   Switch "serveurs"     │
     │   Switch "LAN"       │   │                         │
