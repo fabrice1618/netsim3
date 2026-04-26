@@ -131,6 +131,7 @@ var UIManager = function()
     var ACTION_SELECTED_ELEMENT_DELETED = 4;
     var ACTION_SELECTED_LINE_DELETED = 5;
     var ACTION_CREATE_LINK = 6;
+    var ACTION_ESCAPE = 7;
 
     var menus = [];
     var clickables = [];
@@ -165,6 +166,9 @@ var UIManager = function()
         canvas.addEventListener("mousedown", mouseDownEvent, false);
         canvas.addEventListener("mouseup", mouseUpEvent, false);
         canvas.addEventListener("mousemove", mouseMoveEvent, false);
+        document.addEventListener("keydown", function(e) {
+            if (e.key === "Escape") dispatchEvent(-1, -1, ACTION_ESCAPE);
+        }, false);
         var bbox = canvas.getBoundingClientRect();
 
         mainmenu = new UIMenu("Main menu", 42 + bbox.left, 3, true);
@@ -245,13 +249,17 @@ var UIManager = function()
 
     function hideAllMenus()
     {
-
         for (var id in menus)
         {
             if (menus[id].getVisible())
             {
                 menus[id].hide();
             }
+        }
+        var sel = network.getSelected();
+        if (sel !== null && typeof sel.getMenu === "function" && sel.getMenu().getVisible())
+        {
+            sel.getMenu().hide();
         }
     }
 
@@ -688,6 +696,9 @@ var UIManager = function()
                             state = STATE_ELEMENT_SELECTED_MOUSE_UP;
                         }
                         break;
+                    case ACTION_ESCAPE:
+                        state = STATE_ELEMENT_SELECTED_MOUSE_UP;
+                        break;
                 }
                 break;
         }
@@ -769,11 +780,6 @@ var UIManager = function()
             ctx.strokeStyle = "rgba(100,100,100,0.75)";
             ctx.lineWidth = 5;
             ctx.strokeRect(rect.x, rect.y, rect.width, rect.height);
-            ctx.fillStyle = "rgba(255,255,255,0.75)";
-            ctx.strokeStyle = "rgba(255,255,255,0.75)";
-            ctx.fillRect(elemRect.X, elemRect.Y, elemRect.W, elemRect.H);
-            ctx.lineWidth = 2;
-            ctx.strokeRect(elemRect.X, elemRect.Y, elemRect.W, elemRect.H);
         }
         else if ((state === STATE_LINE_SELECTED) || (state === STATE_LINE_MENU_VISIBLE))
         {
