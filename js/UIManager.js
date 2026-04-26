@@ -476,6 +476,10 @@ var UIManager = function()
                             state = STATE_NEUTRAL;
                         }
                         break;
+                    case ACTION_CREATE_LINK:
+                        hideAllMenus();
+                        state = STATE_CREATING_LINK;
+                        break;
                 }
                 break;
             case STATE_LINE_SELECTED:
@@ -751,7 +755,10 @@ var UIManager = function()
     this.removeClickable = function(c)
     {
         var index = clickables.indexOf(c);
-        clickables.splice(index, 1);
+        if (index !== -1)
+        {
+            clickables.splice(index, 1);
+        }
     };
 
     function renderSelected(ctx)
