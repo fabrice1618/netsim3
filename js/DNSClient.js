@@ -45,7 +45,8 @@ function cancelDNSLookup()
 function requestDNSLookup(id)
 {
     var elem = network.getElement(id);
-    var domain = document.getElementById("dnsclientdomain").value;
+    var domain = document.getElementById("dnsclientdomain").value.trim();
+    if (!isValidHostname(domain) && !isValidIPv4(domain)) { alert(_("Invalid hostname or IP address.")); return; }
     elem.getApp("DNSClient").DNSLookup(domain);
     uimanager.getWindow("divdnslookup").dispose();
     removeBodyDiv('divbk');

@@ -133,7 +133,7 @@ var UITable = function(headers, data, tableid)
         for (var j = 0; j < headers.length; j++) 
         {
             var inputid = tableid + "_new_" + j;
-            var value = document.getElementById(inputid).value;
+            var value = document.getElementById(inputid).value.trim();
             row.push(value);
         }
 

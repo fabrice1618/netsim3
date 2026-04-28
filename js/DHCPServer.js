@@ -46,11 +46,20 @@ function createDHCPServerInfoDiv(id)
 function saveDHCPServerData(id) 
 {
     var elem = network.getElement(id);
-    var initial = document.getElementById('dhcpinitial').value;
-    var final = document.getElementById('dhcpend').value;
-    var gateway = document.getElementById('dhcpgw').value;
-    var dns1 = document.getElementById('dhcpdns1').value;
-    var dns2 = document.getElementById('dhcpdns2').value;
+    var initial = document.getElementById('dhcpinitial').value.trim();
+    var final = document.getElementById('dhcpend').value.trim();
+    var gateway = document.getElementById('dhcpgw').value.trim();
+    var dns1 = document.getElementById('dhcpdns1').value.trim();
+    var dns2 = document.getElementById('dhcpdns2').value.trim();
+
+    if ((gateway !== "" && !isValidIPv4(gateway)) ||
+        (dns1 !== "" && !isValidIPv4(dns1)) ||
+        (dns2 !== "" && !isValidIPv4(dns2)))
+    {
+        alert(_("Invalid IP address format."));
+        return;
+    }
+
     elem.getApp("DHCPServer").setData(initial, final, gateway, dns1, dns2);
     
     removeBodyDiv('divbk');

@@ -52,7 +52,7 @@ function saveDNSServerConfig(id, uitableid)
         app.setEntry(data[i][0], data[i][1]);
     }
     
-    var fwderval = document.getElementById('forwarder').value;
+    var fwderval = document.getElementById('forwarder').value.trim();
     app.setForwarder(fwderval);
     
     uimanager.getWindow("divdnsserverconfig").dispose();

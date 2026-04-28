@@ -53,8 +53,8 @@ function cancelNameGroup()
 function saveNameGroup(id)
 {
     var host = network.getElement(id);
-    var name = document.getElementById("nametxt").value;
-    var group = document.getElementById("grouptxt").value;
+    var name = document.getElementById("nametxt").value.trim();
+    var group = document.getElementById("grouptxt").value.trim();
     group = (group === "")?null:group;
     host.setName(name);
     host.setGroup(group);
@@ -105,16 +105,18 @@ function createDiagnosticsDiv(id)
 function diagnosticsPing(id)
 {
     var host = network.getElement(id);
-    var dst = document.getElementById("diagnosticstxt").value;
+    var dst = document.getElementById("diagnosticstxt").value.trim();
     var ifacepos = document.getElementById("ifacepos").value;
+    if (!isValidIPv4(dst) && !isValidHostname(dst)) { alert(_("Invalid IP address or hostname.")); return; }
     host.getConnectable().getTrafficManager().ping(dst, ifacepos);
 }
 
 function diagnosticsTraceroute(id)
 {
     var host = network.getElement(id);
-    var dst = document.getElementById("diagnosticstxt").value;
+    var dst = document.getElementById("diagnosticstxt").value.trim();
     var ifacepos = document.getElementById("ifacepos").value;
+    if (!isValidIPv4(dst) && !isValidHostname(dst)) { alert(_("Invalid IP address or hostname.")); return; }
     host.getConnectable().getTrafficManager().traceroute(dst, ifacepos);
 }
 
@@ -237,10 +239,19 @@ function saveIpInfo(id, pos)
 {
     var host = network.getElement(id);
     
-    var ipv4 = document.getElementById("ip").value;
-    var netmask = document.getElementById("nm").value;
-    var dns1 = document.getElementById("dns1").value;
-    var dns2 = document.getElementById("dns2").value;
+    var ipv4 = document.getElementById("ip").value.trim();
+    var netmask = document.getElementById("nm").value.trim();
+    var dns1 = document.getElementById("dns1").value.trim();
+    var dns2 = document.getElementById("dns2").value.trim();
+
+    if ((ipv4 !== "" && !isValidIPv4(ipv4)) ||
+        (netmask !== "" && !isValidIPv4(netmask)) ||
+        (dns1 !== "" && !isValidIPv4(dns1)) ||
+        (dns2 !== "" && !isValidIPv4(dns2)))
+    {
+        alert(_("Invalid IP address format."));
+        return;
+    }
 
     ipv4 = ipv4 === ""?null:ipv4;
     netmask = netmask === ""?null:netmask;

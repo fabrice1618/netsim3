@@ -11,33 +11,43 @@
  * 
  */
 
-function isValidIPv4(ipv4) 
+function isValidIPv4(ipv4)
 {
     var result = false;
-    if (ipv4 !== null) 
+    if (ipv4 !== null)
     {
         var parts = ipv4.split(".");
-        if (parts.length === 4) 
+        if (parts.length === 4)
         {
-            var part1 = parseInt(parts[0]);
-            var part2 = parseInt(parts[1]);
-            var part3 = parseInt(parts[2]);
-            var part4 = parseInt(parts[3]);
-            
-            result = (part1 !== NaN) && (part1 >= 0) && (part1 <= 255) && 
-            (part2 !== NaN) && (part2 >= 0) && (part2 <= 255) && 
-            (part3 !== NaN) && (part3 >= 0) && (part3 <= 255) && 
-            (part4 !== NaN) && (part4 >= 0) && (part4 <= 255);
+            var allDigits = /^\d+$/;
+            result = true;
+            for (var i = 0; i < 4; i++)
+            {
+                if (!allDigits.test(parts[i])) { result = false; break; }
+                var n = parseInt(parts[i], 10);
+                if (n < 0 || n > 255) { result = false; break; }
+            }
         }
-    } 
-    else 
+    }
+    else
     {
         result = true;
     }
-    
+
     return result;
 }
-;
+
+function isValidHostname(hostname)
+{
+    if (hostname === null || hostname === "") return false;
+    var labelRegex = /^[a-zA-Z0-9]([a-zA-Z0-9\-]*[a-zA-Z0-9])?$/;
+    var labels = hostname.split(".");
+    for (var i = 0; i < labels.length; i++)
+    {
+        if (!labelRegex.test(labels[i])) return false;
+    }
+    return true;
+}
 
 function ipStringToInt(ip) 
 {

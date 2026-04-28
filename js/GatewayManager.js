@@ -55,13 +55,13 @@ function saveGWConfig(id, uitableid)
     var host = network.getElement(id);
     host.getConnectable().getGatewayManager().purgeGatewayInfo();
     var data = uitables[uitableid].getData();
-    for (var i = 0; i < data.length; i++) 
+    for (var i = 0; i < data.length; i++)
     {
-        var dst = data[i][0];
+        var dst = data[i][0].trim();
         dst = (dst === "") ? "0.0.0.0" : dst;
-        var mask = data[i][1];
+        var mask = data[i][1].trim();
         mask = (mask === "") ? "0.0.0.0" : mask;
-        var gw = data[i][2];
+        var gw = data[i][2].trim();
         host.getConnectable().getGatewayManager().addGatewayInfo(dst, mask, gw);
     }
     uimanager.getWindow("divgwconfig").dispose();
