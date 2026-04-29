@@ -165,7 +165,13 @@ var DHCPServer = function(ifacepos)
         (owner.getConnectable().getIPInfo(ifacepos).getIPv4() !== null)) 
         {
             var newip = getExistingLease(message.getOriginMAC());
-            if (newip === null) 
+            if (newip !== null && (newip < initial || newip > end))
+            {
+                delete leases[newip];
+                delete leasesbymac[message.getOriginMAC()];
+                newip = null;
+            }
+            if (newip === null)
             {
                 newip = newLease(message.getOriginMAC());
             }
