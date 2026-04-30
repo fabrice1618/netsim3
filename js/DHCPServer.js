@@ -128,10 +128,13 @@ var DHCPServer = function(ifacepos)
         var free = false;
         while (!free) 
         {
-            if (result in leases) 
+            if (result in leases)
             {
                 result++;
-            } 
+                if (result > parseInt(end)) {
+                    return null;
+                }
+            }
             else 
             {
                 free = true;
