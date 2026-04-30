@@ -237,7 +237,7 @@ var Connectable = function(c_owner, macmode, ipmode, limitbroadcast, performNAT)
     };
 
     this.removeConnector = function(pos) {
-        connectors.slice(pos, 1);
+        connectors.splice(pos, 1);
     };
 
     this.getConnector = function(pos) {
