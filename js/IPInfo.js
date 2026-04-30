@@ -64,7 +64,7 @@ function ipStringToInt(ip)
 
 function ipIntToString(ip) 
 {
-    result = null;
+    var result = null;
     
     if (ip !== null) 
     {
