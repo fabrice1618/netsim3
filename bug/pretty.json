@@ -1,0 +1,732 @@
+{
+  "version": 1,
+  "lastusedid": 285,
+  "elements": [
+    {
+      "version": 1,
+      "id": 11,
+      "type": "switch",
+      "drawable": {
+        "version": 1,
+        "id": 22,
+        "X": 472.5,
+        "Y": 183.75
+      },
+      "connectable": {
+        "version": 1,
+        "id": 12,
+        "connectors": [
+          {
+            "version": 1,
+            "id": 14
+          },
+          {
+            "version": 1,
+            "id": 15
+          },
+          {
+            "version": 1,
+            "id": 16
+          },
+          {
+            "version": 1,
+            "id": 17
+          },
+          {
+            "version": 1,
+            "id": 18
+          },
+          {
+            "version": 1,
+            "id": 19
+          },
+          {
+            "version": 1,
+            "id": 20
+          },
+          {
+            "version": 1,
+            "id": 21
+          }
+        ],
+        "macaddresses": [
+          "B7:64:24:94:65:8E"
+        ],
+        "ipinfos": [],
+        "macmode": 0,
+        "ipmode": 2,
+        "trafficManager": {
+          "version": 1,
+          "id": 13,
+          "limitbroadcast": false,
+          "performNAT": false,
+          "NATtable": []
+        },
+        "gateways": {
+          "defaultgw": null,
+          "gateways": []
+        },
+        "performNAT": false
+      },
+      "ports": 8,
+      "apps": [],
+      "name": "switch 11",
+      "group": null
+    },
+    {
+      "version": 1,
+      "id": 27,
+      "type": "computer",
+      "drawable": {
+        "version": 1,
+        "id": 31,
+        "X": 405,
+        "Y": 426.25
+      },
+      "connectable": {
+        "version": 1,
+        "id": 28,
+        "connectors": [
+          {
+            "version": 1,
+            "id": 30
+          }
+        ],
+        "macaddresses": [
+          "F4:70:C1:FA:EB:BF"
+        ],
+        "ipinfos": [
+          {
+            "IPv4": null,
+            "DNS1": null,
+            "DNS2": null,
+            "netmask": null,
+            "static": false
+          }
+        ],
+        "macmode": 1,
+        "ipmode": 1,
+        "trafficManager": {
+          "version": 1,
+          "id": 29,
+          "limitbroadcast": true,
+          "performNAT": false,
+          "NATtable": []
+        },
+        "gateways": {
+          "defaultgw": "192.168.1.254",
+          "gateways": []
+        },
+        "performNAT": false
+      },
+      "ports": 1,
+      "apps": [
+        {
+          "app": {
+            "version": 1,
+            "id": "DHCPClient",
+            "ifacepos": 0
+          },
+          "port": -1,
+          "fixed": false,
+          "type": "DHCPClient",
+          "ifacepos": 0
+        },
+        {
+          "app": {
+            "version": 1,
+            "id": "DNSClient",
+            "ifacepos": 0
+          },
+          "port": -1,
+          "fixed": false,
+          "type": "DNSClient",
+          "ifacepos": 0
+        },
+        {
+          "app": {
+            "version": 1,
+            "id": "HTTPClient",
+            "ifacepos": 0
+          },
+          "port": -1,
+          "fixed": false,
+          "type": "HTTPClient",
+          "ifacepos": 0
+        }
+      ],
+      "name": "computer 27",
+      "group": null
+    },
+    {
+      "version": 1,
+      "id": 63,
+      "type": "computer",
+      "drawable": {
+        "version": 1,
+        "id": 67,
+        "X": 591.25,
+        "Y": 431.25
+      },
+      "connectable": {
+        "version": 1,
+        "id": 64,
+        "connectors": [
+          {
+            "version": 1,
+            "id": 66
+          }
+        ],
+        "macaddresses": [
+          "7B:FE:FC:D3:50:FB"
+        ],
+        "ipinfos": [
+          {
+            "IPv4": null,
+            "DNS1": null,
+            "DNS2": null,
+            "netmask": null,
+            "static": false
+          }
+        ],
+        "macmode": 1,
+        "ipmode": 1,
+        "trafficManager": {
+          "version": 1,
+          "id": 65,
+          "limitbroadcast": true,
+          "performNAT": false,
+          "NATtable": []
+        },
+        "gateways": {
+          "defaultgw": "192.168.1.254",
+          "gateways": []
+        },
+        "performNAT": false
+      },
+      "ports": 1,
+      "apps": [
+        {
+          "app": {
+            "version": 1,
+            "id": "DHCPClient",
+            "ifacepos": 0
+          },
+          "port": -1,
+          "fixed": false,
+          "type": "DHCPClient",
+          "ifacepos": 0
+        },
+        {
+          "app": {
+            "version": 1,
+            "id": "DNSClient",
+            "ifacepos": 0
+          },
+          "port": -1,
+          "fixed": false,
+          "type": "DNSClient",
+          "ifacepos": 0
+        },
+        {
+          "app": {
+            "version": 1,
+            "id": "HTTPClient",
+            "ifacepos": 0
+          },
+          "port": -1,
+          "fixed": false,
+          "type": "HTTPClient",
+          "ifacepos": 0
+        }
+      ],
+      "name": "computer 63",
+      "group": null
+    },
+    {
+      "version": 1,
+      "id": 144,
+      "type": "dhcpserver",
+      "drawable": {
+        "version": 1,
+        "id": 148,
+        "X": 155,
+        "Y": 397.5
+      },
+      "connectable": {
+        "version": 1,
+        "id": 145,
+        "connectors": [
+          {
+            "version": 1,
+            "id": 147
+          }
+        ],
+        "macaddresses": [
+          "B0:18:11:42:8F:F4"
+        ],
+        "ipinfos": [
+          {
+            "IPv4": -1062731267,
+            "DNS1": null,
+            "DNS2": null,
+            "netmask": -256,
+            "static": true
+          }
+        ],
+        "macmode": 1,
+        "ipmode": 1,
+        "trafficManager": {
+          "version": 1,
+          "id": 146,
+          "limitbroadcast": true,
+          "performNAT": false,
+          "NATtable": []
+        },
+        "gateways": {
+          "defaultgw": null,
+          "gateways": []
+        },
+        "performNAT": false
+      },
+      "ports": 1,
+      "apps": [
+        {
+          "app": {
+            "version": 1,
+            "id": "DHCPServer",
+            "ifacepos": 0,
+            "initial": "100",
+            "end": "200",
+            "gateway": "192.168.1.254",
+            "dns1": "192.168.2.253",
+            "dns2": ""
+          },
+          "port": 67,
+          "fixed": true,
+          "type": "DHCPServer",
+          "ifacepos": 0
+        }
+      ],
+      "name": "dhcpserver 144",
+      "group": null
+    },
+    {
+      "version": 1,
+      "id": 166,
+      "type": "router",
+      "drawable": {
+        "version": 1,
+        "id": 171,
+        "X": 733.75,
+        "Y": 37.5
+      },
+      "connectable": {
+        "version": 1,
+        "id": 167,
+        "connectors": [
+          {
+            "version": 1,
+            "id": 169
+          },
+          {
+            "version": 1,
+            "id": 170
+          }
+        ],
+        "macaddresses": [
+          "27:9F:FB:0F:DE:71",
+          "88:EE:95:0D:7F:42"
+        ],
+        "ipinfos": [
+          {
+            "IPv4": -1062731010,
+            "DNS1": null,
+            "DNS2": null,
+            "netmask": -256,
+            "static": true
+          },
+          {
+            "IPv4": -1062731266,
+            "DNS1": null,
+            "DNS2": null,
+            "netmask": -256,
+            "static": true
+          }
+        ],
+        "macmode": 1,
+        "ipmode": 1,
+        "trafficManager": {
+          "version": 1,
+          "id": 168,
+          "limitbroadcast": true,
+          "performNAT": true,
+          "NATtable": []
+        },
+        "gateways": {
+          "defaultgw": null,
+          "gateways": []
+        },
+        "performNAT": true
+      },
+      "ports": 2,
+      "apps": [],
+      "name": "router 166",
+      "group": null
+    },
+    {
+      "version": 1,
+      "id": 181,
+      "type": "switch",
+      "drawable": {
+        "version": 1,
+        "id": 192,
+        "X": 1050,
+        "Y": 187.5
+      },
+      "connectable": {
+        "version": 1,
+        "id": 182,
+        "connectors": [
+          {
+            "version": 1,
+            "id": 184
+          },
+          {
+            "version": 1,
+            "id": 185
+          },
+          {
+            "version": 1,
+            "id": 186
+          },
+          {
+            "version": 1,
+            "id": 187
+          },
+          {
+            "version": 1,
+            "id": 188
+          },
+          {
+            "version": 1,
+            "id": 189
+          },
+          {
+            "version": 1,
+            "id": 190
+          },
+          {
+            "version": 1,
+            "id": 191
+          }
+        ],
+        "macaddresses": [
+          "64:FF:74:69:A5:94"
+        ],
+        "ipinfos": [],
+        "macmode": 0,
+        "ipmode": 2,
+        "trafficManager": {
+          "version": 1,
+          "id": 183,
+          "limitbroadcast": false,
+          "performNAT": false,
+          "NATtable": []
+        },
+        "gateways": {
+          "defaultgw": null,
+          "gateways": []
+        },
+        "performNAT": false
+      },
+      "ports": 8,
+      "apps": [],
+      "name": "switch 181",
+      "group": null
+    },
+    {
+      "version": 1,
+      "id": 197,
+      "type": "computer",
+      "drawable": {
+        "version": 1,
+        "id": 201,
+        "X": 1076.25,
+        "Y": 417.5
+      },
+      "connectable": {
+        "version": 1,
+        "id": 198,
+        "connectors": [
+          {
+            "version": 1,
+            "id": 200
+          }
+        ],
+        "macaddresses": [
+          "3B:99:F1:28:81:79"
+        ],
+        "ipinfos": [
+          {
+            "IPv4": -1062731263,
+            "DNS1": null,
+            "DNS2": null,
+            "netmask": -256,
+            "static": true
+          }
+        ],
+        "macmode": 1,
+        "ipmode": 1,
+        "trafficManager": {
+          "version": 1,
+          "id": 199,
+          "limitbroadcast": true,
+          "performNAT": false,
+          "NATtable": []
+        },
+        "gateways": {
+          "defaultgw": "192.168.2.254",
+          "gateways": []
+        },
+        "performNAT": false
+      },
+      "ports": 1,
+      "apps": [
+        {
+          "app": {
+            "version": 1,
+            "id": "DHCPClient",
+            "ifacepos": 0
+          },
+          "port": -1,
+          "fixed": false,
+          "type": "DHCPClient",
+          "ifacepos": 0
+        },
+        {
+          "app": {
+            "version": 1,
+            "id": "DNSClient",
+            "ifacepos": 0
+          },
+          "port": -1,
+          "fixed": false,
+          "type": "DNSClient",
+          "ifacepos": 0
+        },
+        {
+          "app": {
+            "version": 1,
+            "id": "HTTPClient",
+            "ifacepos": 0
+          },
+          "port": -1,
+          "fixed": false,
+          "type": "HTTPClient",
+          "ifacepos": 0
+        }
+      ],
+      "name": "computer 197",
+      "group": null
+    },
+    {
+      "version": 1,
+      "id": 242,
+      "type": "dnsserver",
+      "drawable": {
+        "version": 1,
+        "id": 246,
+        "X": 1313.75,
+        "Y": 408.75
+      },
+      "connectable": {
+        "version": 1,
+        "id": 243,
+        "connectors": [
+          {
+            "version": 1,
+            "id": 245
+          }
+        ],
+        "macaddresses": [
+          "94:3B:BC:D0:AB:42"
+        ],
+        "ipinfos": [
+          {
+            "IPv4": -1062731011,
+            "DNS1": null,
+            "DNS2": null,
+            "netmask": -256,
+            "static": true
+          }
+        ],
+        "macmode": 1,
+        "ipmode": 1,
+        "trafficManager": {
+          "version": 1,
+          "id": 244,
+          "limitbroadcast": true,
+          "performNAT": false,
+          "NATtable": []
+        },
+        "gateways": {
+          "defaultgw": "192.168.2.254",
+          "gateways": []
+        },
+        "performNAT": false
+      },
+      "ports": 1,
+      "apps": [
+        {
+          "app": {
+            "version": 1,
+            "id": "DNSServer",
+            "ifacepos": 0,
+            "dnstable": [
+              {
+                "domain": "console.netsim.lan",
+                "ip": "192.168.2.1"
+              },
+              {
+                "domain": "www.netsim.lan",
+                "ip": "192.168.2.252"
+              }
+            ],
+            "forwarder": ""
+          },
+          "port": 53,
+          "fixed": true,
+          "type": "DNSServer",
+          "ifacepos": 0
+        }
+      ],
+      "name": "dnsserver 242",
+      "group": null
+    },
+    {
+      "version": 1,
+      "id": 264,
+      "type": "httpserver",
+      "drawable": {
+        "version": 1,
+        "id": 268,
+        "X": 920,
+        "Y": 418.75
+      },
+      "connectable": {
+        "version": 1,
+        "id": 265,
+        "connectors": [
+          {
+            "version": 1,
+            "id": 267
+          }
+        ],
+        "macaddresses": [
+          "42:9B:EC:96:C5:07"
+        ],
+        "ipinfos": [
+          {
+            "IPv4": -1062731012,
+            "DNS1": null,
+            "DNS2": null,
+            "netmask": -256,
+            "static": true
+          }
+        ],
+        "macmode": 1,
+        "ipmode": 1,
+        "trafficManager": {
+          "version": 1,
+          "id": 266,
+          "limitbroadcast": true,
+          "performNAT": false,
+          "NATtable": []
+        },
+        "gateways": {
+          "defaultgw": "192.168.2.254",
+          "gateways": []
+        },
+        "performNAT": false
+      },
+      "ports": 1,
+      "apps": [
+        {
+          "app": {
+            "version": 1,
+            "id": "HTTPServer",
+            "ifacepos": 0,
+            "domains": [
+              {
+                "domain": "www.netsim.lan",
+                "files": [
+                  {
+                    "filename": "index.html",
+                    "contents": "hello world"
+                  }
+                ]
+              }
+            ]
+          },
+          "port": 80,
+          "fixed": true,
+          "type": "HTTPServer",
+          "ifacepos": 0
+        }
+      ],
+      "name": "httpserver 264",
+      "group": null
+    }
+  ],
+  "links": [
+    {
+      "version": 1,
+      "id": 135,
+      "connector1": 30,
+      "connector2": 14
+    },
+    {
+      "version": 1,
+      "id": 138,
+      "connector1": 66,
+      "connector2": 15
+    },
+    {
+      "version": 1,
+      "id": 163,
+      "connector1": 147,
+      "connector2": 16
+    },
+    {
+      "version": 1,
+      "id": 233,
+      "connector1": 200,
+      "connector2": 184
+    },
+    {
+      "version": 1,
+      "id": 236,
+      "connector1": 185,
+      "connector2": 169
+    },
+    {
+      "version": 1,
+      "id": 239,
+      "connector1": 17,
+      "connector2": 170
+    },
+    {
+      "version": 1,
+      "id": 261,
+      "connector1": 245,
+      "connector2": 186
+    },
+    {
+      "version": 1,
+      "id": 283,
+      "connector1": 267,
+      "connector2": 187
+    }
+  ]
+}

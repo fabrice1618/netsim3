@@ -148,6 +148,13 @@ var UIManager = function()
     var navbar = null;
     var sidebar = null;
 
+    var LONG_PRESS_DELAY = 500;
+    var LONG_PRESS_MOVE_THRESHOLD = 30;
+    var touch_timer = null;
+    var touch_start_x = 0;
+    var touch_start_y = 0;
+    var touch_is_long_press = false;
+
     function switchMainMenu(params)
     {
         if (mainmenu.getVisible())
@@ -166,6 +173,10 @@ var UIManager = function()
         canvas.addEventListener("mousedown", mouseDownEvent, false);
         canvas.addEventListener("mouseup", mouseUpEvent, false);
         canvas.addEventListener("mousemove", mouseMoveEvent, false);
+        canvas.addEventListener("touchstart",  touchStartEvent, { passive: true });
+        canvas.addEventListener("touchmove",   touchMoveEvent,  { passive: false });
+        canvas.addEventListener("touchend",    touchEndEvent,   { passive: false });
+        canvas.addEventListener("touchcancel", cancelLongPress, { passive: true });
         document.addEventListener("keydown", function(e) {
             if (e.key === "Escape") dispatchEvent(-1, -1, ACTION_ESCAPE);
         }, false);
@@ -212,6 +223,15 @@ var UIManager = function()
         this.clickables = [];
     };
 
+    function touchToCanvasCoords(touch) {
+        var canvas = document.getElementById("simcanvas");
+        var bbox = canvas.getBoundingClientRect();
+        return {
+            x: (touch.clientX - bbox.left) * (canvas.width / bbox.width),
+            y: (touch.clientY - bbox.top)  * (canvas.height / bbox.height)
+        };
+    }
+
     function mouseDownEvent(event)
     {
         var canvas = document.getElementById("simcanvas");
@@ -245,6 +265,64 @@ var UIManager = function()
         move_Y = canvas_y;
 
         dispatchEvent(canvas_x, canvas_y, ACTION_MOUSE_MOVE);
+    }
+
+    function cancelLongPress() {
+        if (touch_timer !== null) {
+            clearTimeout(touch_timer);
+            touch_timer = null;
+        }
+        touch_is_long_press = false;
+    }
+
+    function touchStartEvent(event) {
+        if (event.touches.length !== 1) { cancelLongPress(); return; }
+        var coords = touchToCanvasCoords(event.touches[0]);
+        touch_start_x = coords.x;
+        touch_start_y = coords.y;
+        touch_is_long_press = false;
+
+        touch_timer = setTimeout(function() {
+            touch_timer = null;
+            touch_is_long_press = true;
+            if (navigator.vibrate) navigator.vibrate(40);
+            dispatchEvent(touch_start_x, touch_start_y, ACTION_MOUSE_DOWN);
+        }, LONG_PRESS_DELAY);
+    }
+
+    function touchMoveEvent(event) {
+        if (event.touches.length !== 1) return;
+        var coords = touchToCanvasCoords(event.touches[0]);
+
+        if (touch_is_long_press) {
+            event.preventDefault();
+            move_X = coords.x;
+            move_Y = coords.y;
+            dispatchEvent(coords.x, coords.y, ACTION_MOUSE_MOVE);
+            return;
+        }
+
+        var dx = coords.x - touch_start_x;
+        var dy = coords.y - touch_start_y;
+        if (Math.sqrt(dx * dx + dy * dy) > LONG_PRESS_MOVE_THRESHOLD) {
+            cancelLongPress();
+        }
+    }
+
+    function touchEndEvent(event) {
+        if (touch_is_long_press) {
+            var coords = touchToCanvasCoords(event.changedTouches[0]);
+            event.preventDefault();
+            dispatchEvent(coords.x, coords.y, ACTION_MOUSE_UP);
+            touch_is_long_press = false;
+            return;
+        }
+        if (touch_timer !== null) {
+            cancelLongPress();
+            var coords = touchToCanvasCoords(event.changedTouches[0]);
+            dispatchEvent(coords.x, coords.y, ACTION_MOUSE_DOWN);
+            dispatchEvent(coords.x, coords.y, ACTION_MOUSE_UP);
+        }
     }
 
     function hideAllMenus()
