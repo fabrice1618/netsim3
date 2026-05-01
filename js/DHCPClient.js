@@ -49,7 +49,7 @@ var DHCPClient = function(ifacepos)
         data.description = "DHCP: request";
         var message = new Message(
         "tcp",
-        owner.getConnectable().getIPInfo(ifacepos).getIPv4(),
+        "0.0.0.0",
         "255.255.255.255",
         owner.getConnectable().getMAC(ifacepos),
         "FF:FF:FF:FF:FF:FF",
