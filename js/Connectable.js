@@ -159,9 +159,8 @@ var Connectable = function(c_owner, macmode, ipmode, limitbroadcast, performNAT)
                   var c = connectors[i].getConnectedConnector();
                   if (c !== null)
                   {
-                      // Si el conector no tiene IP, o es de la misma subred que la ip solicitada...
-                      var nextip = c.getIPInfo();
-                      if ((nextip === null) || nextip.sameNetwork(ip))
+                      var localip = this.getIPInfo(i);
+                      if ((localip === null) || localip.sameNetwork(ip))
                       {
                           result = c.whoHas(ip);
                           if (result !== null)
