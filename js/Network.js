@@ -180,7 +180,7 @@ var Network = function(imgs, context, w, h)
             if (visited.indexOf(c) === -1) 
             {
                 // Si tiene la dirección, devolvemos 0
-                if (c.compatibleIP(dstIP, false) || c.compatibleMAC(dstMAC, false)) 
+                if (c.compatibleIP(dstIP, false) && c.compatibleMAC(dstMAC, false)) 
                 {
                     result = 0;
                 } 
